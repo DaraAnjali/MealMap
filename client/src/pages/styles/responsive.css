@@ -1,0 +1,93 @@
+/* GLOBAL MOBILE RULES */
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .page-container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.75rem;
+  }
+}
+
+/* ========================= */
+/* GLOBAL MOBILE FIXES */
+/* ========================= */
+@media (max-width: 768px) {
+
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Page padding */
+  .events-page,
+  .find-food-page,
+  .donate-page,
+  .volunteer-page,
+  .dashboard-page,
+  .profile-page,
+  .legal-page {
+    padding: 20px 16px;
+  }
+
+  /* Cards full width */
+  .event-card,
+  .food-card,
+  .donation-card,
+  .donation-request-card {
+    width: 100%;
+  }
+
+  /* Buttons should NOT stretch too much */
+  button {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Reduce section spacing */
+  section,
+  .page-container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+/* =============================== */
+/* HARD STOP HORIZONTAL SCROLL */
+/* =============================== */
+@media (max-width: 768px) {
+
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Prevent flex items from exceeding screen */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}

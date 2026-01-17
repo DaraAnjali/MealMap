@@ -25,3 +25,16 @@
   gap: 18px;
 }
 
+@media (max-width: 768px) {
+  .search-results {
+    top: 60px;
+    width: 95%;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-overlay {
+    overflow-x: hidden;
+  }
+}

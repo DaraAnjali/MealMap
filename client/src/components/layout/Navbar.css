@@ -171,28 +171,95 @@
   font-weight: 500;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
+
+  /* container spacing */
+  .navbar-container {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  /* LEFT: menu + logo */
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .navbar-logo {
+    height: 32px;
+  }
+
+  /* CENTER: search stays visible */
+  .navbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* search bar layout */
+  .navbar-search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    background: #f3f4f6;
+    border-radius: 999px;
+    padding: 3px;
+    gap: 6px;
+  }
+
+  /* input bigger */
+  .navbar-search input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  /* 🔥 Find Food button SMALL */
+  .navbar-search button {
+    flex-shrink: 0;
+    width: auto;
+    padding: 5px 10px;
+    font-size: 11px;
+    border-radius: 999px;
+  }
+
+  /* hide desktop links */
   .navbar-links {
     display: none;
   }
-}
 
-/* MENU BUTTON */
-.menu-btn {
-  display: none;
-  font-size: 26px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-@media (max-width: 1024px) {
-  .nav-links {
-    display: none;
+  /* RIGHT: user / auth */
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
+  /* username visible */
+  .profile-name {
+    display: inline;
+    font-size: 13px;
+  }
+
+  /* login/register visible */
+  .login-link {
+    display: inline;
+    font-size: 13px;
+  }
+
+  .register-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  /* menu icon */
   .menu-btn {
     display: block;
+    font-size: 22px;
   }
 }

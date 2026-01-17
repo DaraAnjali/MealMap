@@ -4,3 +4,11 @@
 .leaflet-control-zoom {
   display: none;
 }
+
+@media (max-width: 768px) {
+  .leaflet-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+}

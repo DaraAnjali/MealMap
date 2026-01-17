@@ -89,3 +89,14 @@
   position: relative;
   z-index: 1;
 }
+
+@media (max-width: 600px) {
+  .event-details {
+    width: 92%;
+    padding: 18px;
+  }
+
+  .details-map {
+    height: 220px;
+  }
+}

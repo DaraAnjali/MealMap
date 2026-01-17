@@ -74,3 +74,10 @@
     display: block;
   }
 }
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 260px;
+    max-width: 80vw;
+  }
+}
