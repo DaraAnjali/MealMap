@@ -39,9 +39,9 @@ export default function Donate() {
 
       {/* NGO / TEMPLE DONATION REQUESTS */}
       <div className="donation-section">
-        <h2 className="donation-section-title">
+        <h1 className="donation-section-title">
           Other Donation Requests
-        </h2>
+        </h1>
 
         <div className="donation-grid">
           {requests.map((req) => (
