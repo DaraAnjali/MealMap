@@ -1,0 +1,40 @@
+.event-list {
+  padding: 60px 20px;
+}
+
+.event-list-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.event-list-header h1 {
+  font-size: 2rem;
+  color: #14532d;
+  margin-bottom: 8px;
+}
+
+.event-list-header p {
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+.event-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .event-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
+}

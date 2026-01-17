@@ -1,0 +1,65 @@
+.donation-request-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* 🔑 equal height */
+}
+
+/* TITLE */
+.donation-title {
+  color: #166534;
+  font-size: 1.1rem;
+  font-weight: 600;
+  min-height: 2.6em; /* 🔑 align titles */
+}
+
+/* PURPOSE */
+.donation-purpose {
+  color: #374151;
+  font-size: 0.95rem;
+  line-height: 1.4;
+
+  max-height: 2.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* READ MORE */
+.read-more {
+  font-size: 0.85rem;
+  color: #15803d;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+/* TARGET */
+.donation-target {
+  font-size: 0.95rem;
+  margin-top: auto; /* 🔑 push to same level */
+}
+
+/* BUTTON */
+.donate-btn {
+  margin-top: 12px;
+  background: #15803d;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.donate-btn:hover {
+  background: #166534;
+}

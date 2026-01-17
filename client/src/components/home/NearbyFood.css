@@ -1,0 +1,41 @@
+.nearby-food {
+  background-color: #f9fafb;
+  padding: 70px 20px;
+}
+
+.nearby-food-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.nearby-food h2 {
+  font-size: 2rem;
+  color: #14532d;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #4b5563;
+  margin-bottom: 40px;
+}
+
+.food-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .food-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .food-cards {
+    grid-template-columns: 1fr;
+  }
+}

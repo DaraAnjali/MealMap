@@ -1,0 +1,60 @@
+.create-request-wrapper {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.create-request-wrapper h3 {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #14532d;
+  margin-bottom: 30px;
+}
+
+.create-request-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.create-request-form input {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.create-request-form input[type="file"] {
+  grid-column: span 2;
+}
+
+.create-request-form button {
+  grid-column: span 2;
+  padding: 14px;
+  background-color: #1f7a3f;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.create-request-form button:hover {
+  background-color: #14532d;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .create-request-form {
+    grid-template-columns: 1fr;
+  }
+
+  .create-request-form input[type="file"],
+  .create-request-form button {
+    grid-column: span 1;
+  }
+}

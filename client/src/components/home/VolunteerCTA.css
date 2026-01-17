@@ -1,0 +1,42 @@
+.volunteer-cta {
+  background-color: #ffffff;
+  padding: 90px 20px;
+}
+
+.volunteer-cta-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  background: #f9fafb;
+  padding: 60px 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.volunteer-cta h2 {
+  font-size: 2rem;
+  color: #14532d;
+  margin-bottom: 14px;
+}
+
+.volunteer-cta p {
+  font-size: 1.05rem;
+  color: #4b5563;
+  margin-bottom: 30px;
+}
+
+.volunteer-cta button {
+  background-color: #16a34a;
+  color: #ffffff;
+  border: none;
+  padding: 14px 34px;
+  font-size: 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.volunteer-cta button:hover {
+  background-color: #15803d;
+  transform: translateY(-2px);
+}

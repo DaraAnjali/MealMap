@@ -1,0 +1,26 @@
+.donation-card {
+  background: #ffffff;
+  padding: 30px 20px;
+  border-radius: 14px;
+  text-align: center;
+  cursor: pointer;
+  border-top: 4px solid #16a34a;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease;
+}
+
+.donation-card:hover {
+  transform: translateY(-6px);
+  border-top-color: #f97316;
+}
+
+.donation-card h3 {
+  font-size: 1.8rem;
+  color: #14532d;
+  margin-bottom: 8px;
+}
+
+.donation-card p {
+  font-size: 0.95rem;
+  color: #4b5563;
+}

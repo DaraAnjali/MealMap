@@ -1,0 +1,62 @@
+.donate-page {
+  padding-bottom: 80px;
+}
+
+/* HEADER */
+.donate-header {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+
+.donate-header h1 {
+  font-size: 2.4rem;
+  color: #14532d;
+  margin-bottom: 10px;
+}
+
+.donate-header p {
+  font-size: 1rem;
+  color: #4b5563;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* DONATION OPTIONS */
+.donation-options {
+  padding: 40px 20px;
+}
+
+.donation-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* FORM SECTION */
+.donate-form-section {
+  padding: 60px 20px;
+}
+
+/* NGO / TEMPLE SECTION */
+.donation-section {
+  margin-top: 60px;
+}
+
+.donation-section-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1f7a3f;
+  margin-bottom: 24px;
+}
+
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .donation-grid {
+    grid-template-columns: 1fr;
+  }
+}
