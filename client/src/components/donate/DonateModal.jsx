@@ -18,7 +18,7 @@ export default function DonateModal({ event, onClose }) {
         {event.qrCode ? (
           <>
             <img
-              src={`http://localhost:5000${event.qrCode}`}
+              src={`https://mealmap-9fyr.onrender.com${event.qrCode}`}
               alt="Donation QR"
               style={{ display: "block", margin: "20px auto", width: "200px" }}
             />

@@ -8,7 +8,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
-/* 🔥 CLEANUP EXPIRED EVENTS */
+// ------------------ Cron job: Cleanup expired events ------------------
 cron.schedule("* * * * *", async () => {
   try {
     await cleanupEvents();
@@ -16,7 +16,7 @@ cron.schedule("* * * * *", async () => {
     const now = new Date();
     const expiredEvents = await Event.find({
       endsAt: { $lte: now },
-      recurrence: "one-time"
+      recurrence: "one-time",
     });
 
     for (const event of expiredEvents) {
@@ -31,6 +31,7 @@ cron.schedule("* * * * *", async () => {
   }
 });
 
+// ------------------ Start server ------------------
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });

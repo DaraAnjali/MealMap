@@ -14,7 +14,7 @@ export default function DonationRequestModal({ data, onClose }) {
         <p className="modal-purpose">{data.purpose}</p>
 
         <img
-          src={`http://localhost:5000${data.qrCode}`}
+          src={`https://mealmap-9fyr.onrender.com${data.qrCode}`}
           alt="Donation QR"
           className="qr-image"
         />

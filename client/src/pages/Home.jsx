@@ -17,7 +17,7 @@ function Home() {
       const { latitude, longitude } = pos.coords;
 
       const res = await fetch(
-        `http://localhost:5000/api/events/nearby?lat=${latitude}&lng=${longitude}`
+        `https://mealmap-9fyr.onrender.com/api/events/nearby?lat=${latitude}&lng=${longitude}`
       );
 
       const data = await res.json();

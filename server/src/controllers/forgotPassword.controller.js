@@ -1,4 +1,3 @@
-// server/src/controllers/forgotPassword.controller.js
 import User from "../models/User.model.js";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
@@ -11,20 +10,23 @@ export const forgotPassword = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    // Generate OTP / token
+    // Generate token
     const token = crypto.randomBytes(20).toString("hex");
 
     user.resetPasswordToken = token;
     user.resetPasswordExpires = Date.now() + 10 * 60 * 1000; // 10 min
     await user.save();
 
+    // Generate reset link using FRONTEND_URL from .env
+    const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173";
+    const resetLink = `${frontendURL}/reset-password?token=${token}&email=${email}`;
+
     // Send email
-    const resetLink = `http://localhost:5173/reset-password?token=${token}&email=${email}`;
     await sendEmail({
       to: email,
       subject: "MealMap Password Reset",
       text: `Use this link to reset your password: ${resetLink}`,
-      html: `<p>Use this link to reset your password:</p><a href="${resetLink}">${resetLink}</a>`
+      html: `<p>Use this link to reset your password:</p><a href="${resetLink}">${resetLink}</a>`,
     });
 
     res.json({ message: "Reset link sent to your email" });
@@ -40,12 +42,12 @@ export const resetPassword = async (req, res) => {
     const user = await User.findOne({
       email,
       resetPasswordToken: token,
-      resetPasswordExpires: { $gt: Date.now() }
+      resetPasswordExpires: { $gt: Date.now() },
     });
 
     if (!user) return res.status(400).json({ message: "Invalid or expired token" });
 
-    user.password = newPassword; // will be hashed automatically by pre-save hook
+    user.password = newPassword; // hashed automatically by pre-save hook
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
     await user.save();
