@@ -5,6 +5,7 @@
   padding: 30px 26px;
   border-radius: 16px;
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
 .donate-form-container h2 {
@@ -46,9 +47,3 @@
 .donate-form button:hover {
   background: #ea580c;
 }
-
-.donate-form-container {
-  position: relative;
-}
-
-

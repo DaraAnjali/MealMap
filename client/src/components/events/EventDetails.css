@@ -14,16 +14,20 @@
   padding: 24px;
   width: 480px;
   border-radius: 14px;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
   position: relative;
   animation: pop 0.25s ease;
+
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 @keyframes pop {
-  from { transform: scale(0.95); opacity: 0 }
-  to { transform: scale(1); opacity: 1 }
+  from { transform: scale(0.95); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
 }
 
+/* Close button */
 .close-btn {
   position: absolute;
   right: 12px;
@@ -35,57 +39,66 @@
   color: #6b4eff;
 }
 
+/* Title */
 .event-details h2 {
   color: #1e7f42;
   margin-bottom: 12px;
-  font-weight: 700; /* slightly bolder */
+  font-weight: 700;
 }
 
+/* Text */
 .event-details p {
   margin: 6px 0;
   font-size: 14px;
-  color: #333;
+  color: #333333;
 }
 
+/* Links */
 .event-details a {
-  display: block; /* forces new line */
+  display: block;
   margin: 10px 0;
   color: #1e7f42;
   font-weight: 600;
 }
 
+/* Map */
 .details-map {
   margin-top: 15px;
   height: 260px;
   border-radius: 12px;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
-.event-details {
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
+/* Donate button */
 .donate-btn {
   background: #ff9800;
-  color: white;
+  color: #ffffff;
   padding: 10px 14px;
   border-radius: 8px;
   border: none;
   font-weight: 600;
   margin: 10px 0;
   cursor: pointer;
-  display: block; /* forces new line */
+  display: block;
 }
 
-/* Join as Volunteer button */
+/* Join volunteer button */
 .event-details button {
-  display: block; /* forces new line */
+  display: block;
   margin: 10px 0;
   z-index: 10;
 }
 
-.details-map {
-  position: relative;
-  z-index: 1;
+/* ✅ Responsive fix for mobile */
+@media (max-width: 600px) {
+  .event-details {
+    width: 92%;
+    padding: 18px;
+  }
+
+  .details-map {
+    height: 220px;
+  }
 }

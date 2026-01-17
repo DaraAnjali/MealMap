@@ -8,10 +8,10 @@
   z-index: 1000;
 }
 
-/* 🔑 Parent must be relative */
+/* Modal container */
 .donation-modal {
-  position: relative;          /* 🔥 IMPORTANT */
-  background: #fff;
+  position: relative; /* needed for close button positioning */
+  background: #ffffff;
   width: 420px;
   max-height: 90vh;
   overflow-y: auto;
@@ -20,7 +20,7 @@
   text-align: center;
 }
 
-/* ❌ Close button – top right like real websites */
+/* Close button */
 .close-btn {
   position: absolute;
   top: 12px;
@@ -43,15 +43,16 @@
 
 .close-btn:hover {
   background: #e5e7eb;
-  color: #000;
+  color: #000000;
 }
 
+/* Title */
 .modal-title {
   color: #166534;
   margin-bottom: 12px;
 }
 
-/* PURPOSE */
+/* Purpose text */
 .modal-purpose {
   font-size: 0.95rem;
   color: #374151;
@@ -61,18 +62,20 @@
   line-height: 1.5;
 }
 
+/* QR image */
 .qr-image {
   width: 220px;
   margin: 16px auto;
   display: block;
 }
 
+/* Done button */
 .done-btn {
   width: 100%;
   margin-top: 18px;
   padding: 12px;
   background: #15803d;
-  color: white;
+  color: #ffffff;
   border: none;
   border-radius: 12px;
   font-size: 1rem;
@@ -82,4 +85,3 @@
 .done-btn:hover {
   background: #166534;
 }
-

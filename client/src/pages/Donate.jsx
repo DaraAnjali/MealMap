@@ -21,6 +21,7 @@ export default function Donate() {
 
   return (
     <div className="donate-page">
+      {/* HEADER */}
       <div className="donate-header">
         <h1>Donate Food Support</h1>
         <p>Support daily & weekly food initiatives</p>
@@ -37,7 +38,7 @@ export default function Donate() {
         ))}
       </div>
 
-      {/* NGO / TEMPLE DONATION REQUESTS */}
+      {/* OTHER DONATION REQUESTS */}
       <div className="donation-section">
         <h1 className="donation-section-title">
           Other Donation Requests
@@ -54,9 +55,10 @@ export default function Donate() {
         </div>
       </div>
 
-      
+      {/* CREATE REQUEST FORM */}
       <CreateDonationRequest />
 
+      {/* MODALS */}
       <DonateModal
         event={selectedEvent}
         onClose={() => setSelectedEvent(null)}

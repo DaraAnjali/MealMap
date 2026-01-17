@@ -4,6 +4,13 @@
   min-height: 100vh;
 }
 
+/* HEADER */
+.events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .events-header h1 {
   font-size: 32px;
   color: #1e7f42;
@@ -14,11 +21,36 @@
   margin-top: 8px;
 }
 
+.create-btn {
+  background: #1e7f42;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* CONTENT LAYOUT */
+.events-content {
+  display: flex;
+  margin-top: 30px;
+  height: 420px;
+}
+
 .events-list {
-  margin-top: 40px;
+  width: 40%;
+  overflow-y: auto;
+  padding-right: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
+}
+
+.events-map {
+  width: 60%;
+  border-radius: 14px;
+  overflow: hidden;
 }
 
 .events-map-section {
@@ -32,40 +64,7 @@
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-.events-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.create-btn {
-  background: #1e7f42;
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.events-content {
-  display: flex;
-  margin-top: 30px;
-  height: 420px;
-}
-
-.events-list {
-  width: 40%;
-  overflow-y: auto;
-  padding-right: 20px;
-}
-
-.events-map {
-  width: 60%;
-  border-radius: 14px;
-  overflow: hidden;
-}
-
+/* FORM */
 .event-form input,
 .event-form select {
   width: 100%;
@@ -90,6 +89,7 @@
   font-weight: 600;
 }
 
+/* MODAL / MAP FIX */
 .event-overlay {
   z-index: 5000;
 }
@@ -99,38 +99,33 @@
 }
 
 /* ========================= */
-/* MOBILE EVENTS LAYOUT */
+/* MOBILE RESPONSIVE */
 /* ========================= */
 @media (max-width: 768px) {
+
+  .events-page {
+    padding: 40px 16px;
+    overflow-x: hidden;
+  }
 
   .events-content {
     flex-direction: column;
     height: auto;
+    overflow-x: hidden;
   }
 
   .events-list {
     width: 100%;
     padding-right: 0;
-    max-height: none;
   }
 
   .events-map-wrapper {
     margin-top: 20px;
+    overflow-x: hidden;
   }
 
   .events-map {
     width: 100%;
     height: 260px;
-  }
-}
-
-
-
-@media (max-width: 768px) {
-  .events-page,
-  .events-content,
-  .events-list,
-  .events-map-wrapper {
-    overflow-x: hidden;
   }
 }

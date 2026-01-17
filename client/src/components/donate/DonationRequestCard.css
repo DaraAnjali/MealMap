@@ -1,13 +1,13 @@
 .donation-request-card {
-  background: #fff;
+  background: #ffffff;
   border-radius: 14px;
   padding: 22px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
   text-align: center;
 
   display: flex;
   flex-direction: column;
-  height: 100%; /* 🔑 equal height */
+  height: 100%; /* equal height cards */
 }
 
 /* TITLE */
@@ -15,7 +15,7 @@
   color: #000703;
   font-size: 1.1rem;
   font-weight: 600;
-  min-height: 2.6em; /* 🔑 align titles */
+  min-height: 2.6em; /* align titles */
 }
 
 /* PURPOSE */
@@ -45,14 +45,14 @@
 /* TARGET */
 .donation-target {
   font-size: 0.95rem;
-  margin-top: auto; /* 🔑 push to same level */
+  margin-top: auto; /* keeps alignment consistent */
 }
 
 /* BUTTON */
 .donate-btn {
   margin-top: 12px;
   background: #15803d;
-  color: #fff;
+  color: #ffffff;
   border: none;
   padding: 10px;
   border-radius: 10px;
