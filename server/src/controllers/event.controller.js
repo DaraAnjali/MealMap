@@ -1,18 +1,20 @@
 import Event from "../models/Event.model.js";
 
+/* ✅ MARK COMPLETED ONE-TIME EVENTS */
 export const markCompletedEvents = async () => {
   const now = new Date();
 
   await Event.updateMany(
     {
+      recurrence: "one-time",
       endsAt: { $lt: now },
-      completed: false,
-      recurrence: "one-time"
+      completed: false
     },
     { completed: true }
   );
 };
 
+/* ✅ CREATE EVENT */
 export const createEvent = async (req, res) => {
   try {
     const {
@@ -30,6 +32,7 @@ export const createEvent = async (req, res) => {
     } = req.body;
 
     const coordinates = JSON.parse(req.body.coordinates);
+
     const endsAt = new Date(date);
     const [h, m] = endTime.split(":");
     endsAt.setHours(h, m, 0, 0);
@@ -51,7 +54,8 @@ export const createEvent = async (req, res) => {
       enableDonation,
       organizerContact,
       qrCode,
-      organizer: req.user.id
+      organizer: req.user.id,
+      completed: false
     });
 
     res.status(201).json(event);
@@ -60,35 +64,33 @@ export const createEvent = async (req, res) => {
   }
 };
 
+/* ✅ GET EVENTS (AUTO UPDATE + CLEANUP) */
 export const getEvents = async (req, res) => {
   try {
     await markCompletedEvents();
 
     const now = new Date();
 
-    const events = await Event.find({
-      completed: false
-    });
+    const events = await Event.find({ completed: false });
 
-    // 🔁 FINAL RECURRENCE LOOP
     for (const event of events) {
-      if (event.createdByUserInfo) continue; // skip info events
+      if (event.createdByUserInfo) continue;
 
-      // Daily recurrence
+      // 🔁 DAILY
       if (event.recurrence === "daily" && event.endsAt < now) {
         event.date.setDate(event.date.getDate() + 1);
         event.endsAt.setDate(event.endsAt.getDate() + 1);
         await event.save();
       }
 
-      // Weekly recurrence
+      // 🔁 WEEKLY
       if (
         event.recurrence === "weekly" &&
         event.endsAt < now &&
         event.weeklyDay !== null
       ) {
-        const currentDay = event.date.getDay();
-        let diff = event.weeklyDay - currentDay;
+        const today = event.date.getDay();
+        let diff = event.weeklyDay - today;
         if (diff <= 0) diff += 7;
 
         event.date.setDate(event.date.getDate() + diff);
@@ -97,9 +99,7 @@ export const getEvents = async (req, res) => {
       }
     }
 
-    const updatedEvents = await Event.find({
-      completed: false
-    })
+    const updatedEvents = await Event.find({ completed: false })
       .populate("organizer", "name")
       .populate("volunteers", "name")
       .sort({ date: 1 });
@@ -110,20 +110,30 @@ export const getEvents = async (req, res) => {
   }
 };
 
+/* ✅ DONATABLE EVENTS */
 export const getDonatableEvents = async (req, res) => {
-  const events = await Event.find({
-    enableDonation: true,
-    recurrence: { $in: ["daily", "weekly"] }
-  });
-  res.json(events);
+  try {
+    const events = await Event.find({
+      enableDonation: true,
+      completed: false
+    });
+    res.json(events);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
 
+/* ✅ NEARBY EVENTS (BASIC) */
 export const getNearbyEvents = async (req, res) => {
-  const events = await Event.find();
-  res.json(events);
+  try {
+    const events = await Event.find({ completed: false });
+    res.json(events);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
 
-/* 🔁 DASHBOARD FUNCTION */
+/* ✅ DASHBOARD EVENTS */
 export const getDashboardEvents = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -139,25 +149,30 @@ export const getDashboardEvents = async (req, res) => {
     const infoEvents = await Event.find({
       createdByUserInfo: true,
       organizer: userId
-    })
-      .populate("organizer", "name");
+    }).populate("organizer", "name");
 
     res.json({ conducted, volunteered, infoEvents });
-  } catch (err) {
+  } catch {
     res.status(500).json({ message: "Dashboard fetch failed" });
   }
 };
 
-/* ✅ DELETE FUNCTION */
+/* ✅ DELETE EVENT */
 export const deleteEvent = async (req, res) => {
-  const event = await Event.findById(req.params.id);
+  try {
+    const event = await Event.findById(req.params.id);
 
-  if (!event) return res.status(404).json({ message: "Event not found" });
+    if (!event) {
+      return res.status(404).json({ message: "Event not found" });
+    }
 
-  if (event.organizer.toString() !== req.user.id) {
-    return res.status(403).json({ message: "Not authorized" });
+    if (event.organizer.toString() !== req.user.id) {
+      return res.status(403).json({ message: "Not authorized" });
+    }
+
+    await event.deleteOne();
+    res.json({ message: "Event deleted" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
-
-  await event.deleteOne();
-  res.json({ message: "Event deleted" });
 };

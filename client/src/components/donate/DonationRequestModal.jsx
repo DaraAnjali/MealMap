@@ -10,14 +10,15 @@ export default function DonationRequestModal({ data, onClose }) {
 
         <h2 className="modal-title">{data.name}</h2>
 
-        {/* 👇 MULTI-LINE PURPOSE */}
         <p className="modal-purpose">{data.purpose}</p>
 
-        <img
-          src={`https://mealmap-9fyr.onrender.com${data.qrCode}`}
-          alt="Donation QR"
-          className="qr-image"
-        />
+        {data.qrCode && (
+          <img
+            src={`${import.meta.env.VITE_API_URL}${data.qrCode}`}
+            alt="Donation QR"
+            className="qr-image"
+          />
+        )}
 
         <p><strong>Contact:</strong> {data.contact}</p>
         <p><strong>Target Amount:</strong> ₹{data.targetAmount}</p>

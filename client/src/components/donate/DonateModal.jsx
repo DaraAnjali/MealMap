@@ -9,38 +9,32 @@ export default function DonateModal({ event, onClose }) {
   return (
     <div className="event-overlay">
       <div className="event-details donate-form-container">
-
         <button className="close-btn" onClick={onClose}>✖</button>
 
         <h2>Donate to {event.title}</h2>
 
-        {/* ✅ ORGANIZER UPLOADED QR */}
         {event.qrCode ? (
           <>
             <img
-              src={`https://mealmap-9fyr.onrender.com${event.qrCode}`}
+              src={`${import.meta.env.VITE_API_URL}${event.qrCode}`}
               alt="Donation QR"
               style={{ display: "block", margin: "20px auto", width: "200px" }}
             />
 
-            <button
-              style={{ marginBottom: "12px" }}
-              onClick={() => setShowContact(!showContact)}
-            >
+            <button onClick={() => setShowContact(!showContact)}>
               Contact organizer
             </button>
           </>
         ) : (
           <p style={{ textAlign: "center", color: "#777" }}>
-            No donation QR provided by organizer
+            No donation QR provided
           </p>
         )}
 
-        {/* ORGANIZER DETAILS */}
         {showContact && (
           <div style={{ textAlign: "center" }}>
             <p><strong>Contact Organizer</strong></p>
-            <p>{event.organizerContact}</p>
+            <p>{event.organizerContact || "Not available"}</p>
           </div>
         )}
 
@@ -51,3 +45,4 @@ export default function DonateModal({ event, onClose }) {
     </div>
   );
 }
+

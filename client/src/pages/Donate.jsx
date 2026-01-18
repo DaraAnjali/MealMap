@@ -5,6 +5,7 @@ import DonateModal from "../components/donate/DonateModal";
 import DonationRequestCard from "../components/donate/DonationRequestCard";
 import DonationRequestModal from "../components/donate/DonationRequestModal";
 import CreateDonationRequest from "../components/donate/CreateDonationRequest";
+import { useAuth } from "../context/AuthContext";
 
 import "./styles/Donate.css";
 
@@ -13,6 +14,8 @@ export default function Donate() {
   const [requests, setRequests] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [selectedRequest, setSelectedRequest] = useState(null);
+
+  const { user } = useAuth();
 
   useEffect(() => {
     api.getDonatableEvents().then(setEvents);
@@ -50,6 +53,7 @@ export default function Donate() {
               key={req._id}
               data={req}
               onDonate={() => setSelectedRequest(req)}
+              isOwner={false}   // ✅ CHANGED AS REQUESTED
             />
           ))}
         </div>

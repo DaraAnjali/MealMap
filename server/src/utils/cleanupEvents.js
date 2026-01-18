@@ -1,39 +1,34 @@
 import Event from "../models/Event.model.js";
 
+export default async function cleanupEvents() {
+  const now = new Date();
 
-const cleanupEvents = async () => {
-  try {
-    const now = new Date();
+  const events = await Event.find({
+    endsAt: { $exists: true }
+  });
 
-    const events = await Event.find({
-      recurrence: { $in: ["daily", "weekly"] },
-      endsAt: { $lte: now }
-    });
-
-    for (const event of events) {
-      const newDate = new Date(event.date);
-      const newEndsAt = new Date(event.endsAt);
-
-      if (event.recurrence === "daily") {
-        newDate.setDate(newDate.getDate() + 1);
-        newEndsAt.setDate(newEndsAt.getDate() + 1);
-      }
-
-      if (event.recurrence === "weekly") {
-        newDate.setDate(newDate.getDate() + 7);
-        newEndsAt.setDate(newEndsAt.getDate() + 7);
-      }
-
-      event.date = newDate;
-      event.endsAt = newEndsAt;
-
+  for (const event of events) {
+    // ONE-TIME
+    if (event.recurrence === "one-time" && event.endsAt <= now) {
+      event.completed = true;
       await event.save();
     }
 
-    console.log(`✅ Updated ${events.length} recurring events`);
-  } catch (err) {
-    console.error("❌ Cleanup error:", err.message);
-  }
-};
+    // DAILY
+    if (event.recurrence === "daily" && event.endsAt <= now) {
+      const diffMs = now - event.endsAt;
+      const diffDays = Math.max(1, Math.ceil(diffMs / 86400000));
 
-export default cleanupEvents;
+      event.date = new Date(event.date.getTime() + diffDays * 86400000);
+      event.endsAt = new Date(event.endsAt.getTime() + diffDays * 86400000);
+      await event.save();
+    }
+
+    // WEEKLY
+    if (event.recurrence === "weekly" && event.endsAt <= now) {
+      event.date = new Date(event.date.getTime() + 7 * 86400000);
+      event.endsAt = new Date(event.endsAt.getTime() + 7 * 86400000);
+      await event.save();
+    }
+  }
+}

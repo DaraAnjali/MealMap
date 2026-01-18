@@ -21,6 +21,13 @@ const donationRequestSchema = new mongoose.Schema(
     qrCode: {
       type: String,
       required: true
+    },
+
+    // ✅ ADD ONLY THIS
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
     }
   },
   { timestamps: true }

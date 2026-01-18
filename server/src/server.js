@@ -1,36 +1,26 @@
 import app from "./app.js";
 import dotenv from "dotenv";
 import cron from "node-cron";
-import Event from "./models/Event.model.js";
 import cleanupEvents from "./utils/cleanupEvents.js";
+import path from "path";
+import donationRequestRoutes from "./routes/donationRequest.routes.js";
 
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
-// ------------------ Cron job: Cleanup expired events ------------------
+// ------------------ Cron job: auto update events ------------------
 cron.schedule("* * * * *", async () => {
   try {
     await cleanupEvents();
-
-    const now = new Date();
-    const expiredEvents = await Event.find({
-      endsAt: { $lte: now },
-      recurrence: "one-time",
-    });
-
-    for (const event of expiredEvents) {
-      await event.deleteOne();
-    }
-
-    if (expiredEvents.length > 0) {
-      console.log(`🗑️ Deleted ${expiredEvents.length} one-time events`);
-    }
+    console.log("✔ Events auto-updated");
   } catch (err) {
     console.error("❌ Event cleanup error:", err.message);
   }
 });
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
+app.use("/api/donation-requests", donationRequestRoutes);
 // ------------------ Start server ------------------
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);

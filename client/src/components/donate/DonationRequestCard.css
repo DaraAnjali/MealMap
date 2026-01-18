@@ -1,32 +1,36 @@
 .donation-request-card {
   background: #ffffff;
-  border-radius: 14px;
+  border-radius: 18px;
   padding: 22px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
   text-align: center;
 
   display: flex;
   flex-direction: column;
-  height: 100%; /* equal height cards */
+  height: 100%;
+  border-top: 4px solid #16a34a;
+  transition: all 0.25s ease;
+}
+
+.donation-request-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
 }
 
 /* TITLE */
 .donation-title {
-  color: #000703;
-  font-size: 1.1rem;
-  font-weight: 600;
-  min-height: 2.6em; /* align titles */
+  color: #14532d;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
 /* PURPOSE */
 .donation-purpose {
   color: #374151;
   font-size: 0.95rem;
-  line-height: 1.4;
-
-  max-height: 2.8em;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.45;
+  margin-bottom: 6px;
 }
 
 /* READ MORE */
@@ -34,8 +38,8 @@
   font-size: 0.85rem;
   color: #15803d;
   cursor: pointer;
-  font-weight: 500;
-  margin-bottom: 6px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .read-more:hover {
@@ -45,21 +49,39 @@
 /* TARGET */
 .donation-target {
   font-size: 0.95rem;
-  margin-top: auto; /* keeps alignment consistent */
+  margin-top: auto;
+  color: #111827;
 }
 
-/* BUTTON */
+/* DONATE */
 .donate-btn {
   margin-top: 12px;
-  background: #15803d;
+  background: linear-gradient(to right, #22c55e, #16a34a);
   color: #ffffff;
   border: none;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 999px;
   cursor: pointer;
   font-size: 0.95rem;
+  font-weight: 600;
 }
 
 .donate-btn:hover {
-  background: #166534;
+  background: linear-gradient(to right, #16a34a, #15803d);
+}
+
+/* DELETE */
+.delete-btn {
+  margin-top: 8px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #b91c1c;
 }

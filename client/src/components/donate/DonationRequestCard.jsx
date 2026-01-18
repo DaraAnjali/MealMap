@@ -1,6 +1,6 @@
 import "./DonationRequestCard.css";
 
-export default function DonationRequestCard({ data, onDonate }) {
+export default function DonationRequestCard({ data, onDonate, onDelete, isOwner }) {
   return (
     <div className="donation-request-card">
       <h3 className="donation-title">{data.name}</h3>
@@ -20,6 +20,16 @@ export default function DonationRequestCard({ data, onDonate }) {
       <button className="donate-btn" onClick={onDonate}>
         Donate
       </button>
+
+      {/* ✅ ADD ONLY THIS */}
+      {isOwner && (
+        <button
+          className="delete-btn"
+          onClick={onDelete}
+        >
+          Delete
+        </button>
+      )}
     </div>
   );
 }
