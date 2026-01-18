@@ -15,13 +15,10 @@ connectDB();
 
 const app = express();
 
-// ---------- CORS (FIXED & SIMPLE) ----------
+// ---------- CORS (uses env correctly) ----------
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://mealmapwebsite.netlify.app"
-    ],
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
