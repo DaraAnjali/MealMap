@@ -15,10 +15,24 @@ connectDB();
 
 const app = express();
 
-// ---------- CORS (uses env correctly) ----------
+// ---------- ✅ FIXED CORS ----------
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://mealmapwebsite.netlify.app"
+];
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: function (origin, callback) {
+      // allow requests with no origin (like Postman)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("CORS not allowed"));
+      }
+    },
     credentials: true,
   })
 );
