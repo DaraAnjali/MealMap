@@ -1,9 +1,11 @@
-import app from "./app.js";   // ✅ VERY IMPORTANT
-import dotenv from "dotenv";
+import "./env.js";
+
+import app from "./app.js";
+
 import cron from "node-cron";
 import cleanupEvents from "./utils/cleanupEvents.js";
 
-dotenv.config();
+
 
 const PORT = process.env.PORT || 5000;
 
