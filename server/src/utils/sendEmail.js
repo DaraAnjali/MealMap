@@ -7,12 +7,19 @@ export const sendEmail = async ({ to, subject, html }) => {
 
   const resend = new Resend(process.env.RESEND_API_KEY);
 
-  const data = await resend.emails.send({
-    from: "MealMap <onboarding@resend.dev>",
-    to,
-    subject,
-    html,
-  });
+  try {
+    const data = await resend.emails.send({
+      from: "MealMap <onboarding@resend.dev>", // trusted sender
+      to,
+      subject,
+      html,
+      reply_to: process.env.GMAIL_USER, // replies go to your Gmail
+    });
 
-  return data;
+    console.log("📨 Email sent via Resend:", data.id);
+    return data;
+  } catch (error) {
+    console.error("❌ Email sending failed:", error);
+    throw error;
+  }
 };
