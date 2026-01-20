@@ -31,8 +31,8 @@ export const api = {
   getDashboardEvents: async () => {
     const res = await fetch(`${API_BASE_URL}/api/events/dashboard`, {
       headers: {
-        Authorization: `Bearer ${getToken()}`
-      }
+        Authorization: `Bearer ${getToken()}`,
+      },
     });
     return handleJSON(res);
   },
@@ -41,9 +41,9 @@ export const api = {
     const res = await fetch(`${API_BASE_URL}/api/events`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${getToken()}`
+        Authorization: `Bearer ${getToken()}`,
       },
-      body: formData
+      body: formData,
     });
     return handleJSON(res);
   },
@@ -52,9 +52,9 @@ export const api = {
     const res = await fetch(`${API_BASE_URL}/api/events/info`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${getToken()}`
+        Authorization: `Bearer ${getToken()}`,
       },
-      body: formData
+      body: formData,
     });
     return handleJSON(res);
   },
@@ -63,8 +63,8 @@ export const api = {
     const res = await fetch(`${API_BASE_URL}/api/events/${id}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${getToken()}`
-      }
+        Authorization: `Bearer ${getToken()}`,
+      },
     });
     return handleJSON(res);
   },
@@ -73,8 +73,8 @@ export const api = {
   getMyVolunteering: async () => {
     const res = await fetch(`${API_BASE_URL}/api/volunteer/my`, {
       headers: {
-        Authorization: `Bearer ${getToken()}`
-      }
+        Authorization: `Bearer ${getToken()}`,
+      },
     });
     return handleJSON(res);
   },
@@ -84,9 +84,9 @@ export const api = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${getToken()}`
+        Authorization: `Bearer ${getToken()}`,
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
     return handleJSON(res);
   },
@@ -95,8 +95,8 @@ export const api = {
     const res = await fetch(`${API_BASE_URL}/api/volunteer/${eventId}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${getToken()}`
-      }
+        Authorization: `Bearer ${getToken()}`,
+      },
     });
     return handleJSON(res);
   },
@@ -108,14 +108,11 @@ export const api = {
   },
 
   getMyDonationRequests: async () => {
-    const res = await fetch(
-      `${API_BASE_URL}/api/donation-requests/my`,
-      {
-        headers: {
-          Authorization: `Bearer ${getToken()}`
-        }
-      }
-    );
+    const res = await fetch(`${API_BASE_URL}/api/donation-requests/my`, {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    });
     return handleJSON(res);
   },
 
@@ -123,9 +120,9 @@ export const api = {
     const res = await fetch(`${API_BASE_URL}/api/donation-requests`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${getToken()}`
+        Authorization: `Bearer ${getToken()}`,
       },
-      body: formData
+      body: formData,
     });
     return handleJSON(res);
   },
@@ -134,9 +131,28 @@ export const api = {
     const res = await fetch(`${API_BASE_URL}/api/donation-requests/${id}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${getToken()}`
-      }
+        Authorization: `Bearer ${getToken()}`,
+      },
     });
     return handleJSON(res);
-  }
+  },
+
+  // ---------------- AUTH / PASSWORD ----------------
+  forgotPassword: async (email) => {
+    const res = await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+    return handleJSON(res);
+  },
+
+  resetPassword: async (token, newPassword) => {
+    const res = await fetch(`${API_BASE_URL}/api/auth/reset-password/${token}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password: newPassword }),
+    });
+    return handleJSON(res);
+  },
 };
