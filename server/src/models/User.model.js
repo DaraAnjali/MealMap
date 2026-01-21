@@ -7,10 +7,14 @@ const userSchema = new mongoose.Schema(
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    
+
     // 🔹 Forgot password fields
     resetPasswordToken: String,
-    resetPasswordExpires: Date
+    resetPasswordExpires: Date,
+
+    // 🔹 Added fields
+    resetToken: String,
+    resetTokenExpire: Date,
   },
   { timestamps: true }
 );

@@ -1,29 +1,20 @@
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import nodemailer from "nodemailer";
 
 export const sendEmail = async ({ to, subject, html }) => {
-  try {
-    if (!process.env.RESEND_API_KEY) {
-      throw new Error("RESEND_API_KEY missing");
-    }
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
 
-    const response = await resend.emails.send({
-      from: process.env.EMAIL_FROM,
-      to,
-      subject,
-      html,
-    });
-
-    console.log("📧 Resend response:", response);
-
-    if (response.error) {
-      throw new Error(response.error.message);
-    }
-
-    return response;
-  } catch (error) {
-    console.error("❌ Email sending failed:", error.message);
-    throw error;
-  }
+  await transporter.sendMail({
+    from: `"MealMap Support" <${process.env.SMTP_USER}>`,
+    to,
+    subject,
+    html,
+  });
 };
