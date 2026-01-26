@@ -1,6 +1,5 @@
-// client/src/pages/ResetPassword.jsx
 import "./styles/Auth.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 export default function ResetPassword() {
@@ -19,11 +18,14 @@ export default function ResetPassword() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://mealmap-9fyr.onrender.com/api/auth/reset-password", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, token, newPassword })
-      });
+      const res = await fetch(
+        `https://mealmap-9fyr.onrender.com/api/auth/reset-password/${token}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, newPassword }),
+        }
+      );
 
       const data = await res.json();
       setMessage(data.message);
